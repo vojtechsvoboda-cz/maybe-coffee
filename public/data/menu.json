@@ -1,0 +1,429 @@
+{
+ "updated": "2026-10",
+ "groups": [
+  {
+   "id": "jidlo",
+   "name": "Jídlo",
+   "cats": [
+    {
+     "id": "slane",
+     "name": "Slané",
+     "items": [
+      {
+       "n": "Míchaná vejce",
+       "p": 165,
+       "d": "Domácí míchaná vejce (3 ks) se salátkem, kváskovým chlebem a mikrobylinkami.",
+       "a": "1, 3, 7, 10"
+      },
+      {
+       "n": "Snídaně z pánve",
+       "p": 230,
+       "d": "Sázená vejce (2 ks) s opečenými vídeňskými párečky, slaninou, rajčaty, žampiony, salátkem a bagetkou.",
+       "a": "1, 3, 7, 10"
+      },
+      {
+       "n": "Avokádový chleba",
+       "p": 250,
+       "d": "Rozpečený chleba se sýrem cheddar, avokádovým guacamole, rukolou, mozzarellou, granátovým jablkem, balsamicem a mandlemi.",
+       "a": "1, 3, 7, 8",
+       "img": "avo"
+      },
+      {
+       "n": "Slané croffles",
+       "p": 250,
+       "d": "Croissantové waffle s avokádem, rukolou, šunkou od kosti, sázeným vejcem, cheddarovým dipem a salátkem.",
+       "a": "1, 3, 7, 10"
+      },
+      {
+       "n": "Sázená vejce",
+       "p": 250,
+       "d": "Tři volská oka s česnekovým jogurtem, chilli olejem, koprem a křupavou cizrnou, podávaná s chlebem.",
+       "a": "1, 3, 7"
+      },
+      {
+       "n": "Toast",
+       "p": 260,
+       "d": "Zapečený toast s cheddarem, šunkou od kosti a rajčetem, zasypaný parmazánem, s domácí hořčičnou majonézou.",
+       "a": "1, 3, 7, 10"
+      },
+      {
+       "n": "Chleba s míchačkami",
+       "p": 260,
+       "d": "Rozpečený chleba se šlehaným crème fraîche, rukolou, míchanými vejci, avokádem a granátovým jablkem.",
+       "a": "1, 3, 7",
+       "img": "michacky"
+      },
+      {
+       "n": "Chleba s dýní",
+       "p": 250,
+       "d": "Rozpečený chleba s dýňovou pomazánkou, rukolou, feta sýrem, dýňovými semínky a dýňovým olejem.",
+       "a": "1, 3, 7, 8",
+       "img": "pumpkin"
+      }
+     ],
+     "extra": "Přílohy navíc: avokádo 40 · slanina 35 · vejce 20 · vídeňské párečky 20 · fazolky v tomatě 10 · salátek s medovo-hořčičnou zálivkou 20 · máslo 20 · bylinkové máslo 20 · pečivo 15 · bezlepkový chléb nebo lívance 30 Kč"
+    },
+    {
+     "id": "sladke",
+     "name": "Sladké",
+     "items": [
+      {
+       "n": "Croffles s višněmi a čokoládou",
+       "p": 240,
+       "d": "Croissantové waffle s čokoládou, višněmi, vanilkovým krémem a ovocem.",
+       "a": "1, 3, 7, 8"
+      },
+      {
+       "n": "Frenchtoast se švestkami",
+       "p": 240,
+       "d": "Opečená brioška na másle se švestkovým rozvarem se skořicí, vanilkovým krémem s mákem, perníčkovou drobenkou a ovocem.",
+       "a": "1, 3, 7, 8, 13"
+      },
+      {
+       "n": "Podzimní granola",
+       "p": 195,
+       "d": "Domácí skořicová granola s ovocem, arašídovým máslem a javorovým sirupem.",
+       "a": "1, 3, 5, 7, 8",
+       "img": "granola"
+      }
+     ],
+     "extra": "Zákusky a dorty najdete každý den ve vitríně."
+    },
+    {
+     "id": "poledni",
+     "name": "Polední menu",
+     "items": [
+      {
+       "n": "Polévka s pečivem",
+       "p": 60
+      },
+      {
+       "n": "Zeleninový salát",
+       "p": 170,
+       "a": "10, 11"
+      },
+      {
+       "n": "Polévka s pečivem a zeleninový salát",
+       "p": 205
+      }
+     ],
+     "extra": "Podáváme od pondělí do pátku od 11:00 do vyprodání zásob."
+    }
+   ]
+  },
+  {
+   "id": "piti",
+   "name": "Pití",
+   "cats": [
+    {
+     "id": "kava",
+     "name": "Káva",
+     "items": [
+      {
+       "n": "Espresso",
+       "p": 60
+      },
+      {
+       "n": "Espresso Macchiato",
+       "p": 65
+      },
+      {
+       "n": "Espresso Lungo",
+       "p": 65
+      },
+      {
+       "n": "Espresso Doppio",
+       "p": 80
+      },
+      {
+       "n": "Espresso Tonic",
+       "p": 90
+      },
+      {
+       "n": "Cappuccino",
+       "p": 80,
+       "img": "cappuccino"
+      },
+      {
+       "n": "Caffè Latte",
+       "p": 90,
+       "img": "latte"
+      },
+      {
+       "n": "Flat White",
+       "p": 95
+      },
+      {
+       "n": "Filtrovaná káva V60",
+       "p": 105
+      },
+      {
+       "n": "Batch Brew",
+       "p": 95
+      }
+     ],
+     "extra": "Pražírna Ignác, 85 % Arabica a 15 % Robusta. Shot espressa navíc 20 · příchuť 15 · alternativní mléko 10 Kč · bezlaktózové mléko bez příplatku · každou kávu připravíme i bez kofeinu."
+    },
+    {
+     "id": "matcha",
+     "name": "Matcha",
+     "items": [
+      {
+       "n": "Matcha Latte",
+       "p": 100,
+       "img": "matcha-latte"
+      },
+      {
+       "n": "Iced Matcha Latte",
+       "p": 105,
+       "img": "matcha"
+      },
+      {
+       "n": "Iced Matcha Maracuja Latte",
+       "p": 135
+      },
+      {
+       "n": "Iced Matcha Strawberry Latte",
+       "p": 135,
+       "img": "matcha-straw"
+      },
+      {
+       "n": "Matcha Fresh",
+       "p": 135,
+       "d": "Pomeranč nebo grep."
+      },
+      {
+       "n": "Matcha Mango Limonáda",
+       "p": 125
+      },
+      {
+       "n": "Matcha Grep Tonic",
+       "p": 100
+      }
+     ],
+     "extra": "Matcha od Moya Matcha."
+    },
+    {
+     "id": "horke",
+     "name": "Horké a čaje",
+     "items": [
+      {
+       "n": "Chai Latte",
+       "p": 95
+      },
+      {
+       "n": "Dirty Chai Latte",
+       "p": 110
+      },
+      {
+       "n": "Horké Yuzu",
+       "p": 90
+      },
+      {
+       "n": "Horká hruška se skořicí",
+       "p": 90
+      },
+      {
+       "n": "Moccacino",
+       "p": 90
+      },
+      {
+       "n": "Babyccino",
+       "p": 35
+      },
+      {
+       "n": "Horká Ajala",
+       "p": 95
+      },
+      {
+       "n": "Horká čokoláda s marshmallows",
+       "p": 90
+      },
+      {
+       "h": "Čaje"
+      },
+      {
+       "n": "Sypaný čaj",
+       "p": 95,
+       "d": "Ovocný, zelený, černý Earl Grey nebo bylinkový."
+      },
+      {
+       "n": "Čerstvý čaj",
+       "p": 95,
+       "d": "Mátový nebo zázvorový."
+      }
+     ]
+    },
+    {
+     "id": "limo",
+     "name": "Limonády",
+     "items": [
+      {
+       "n": "Maybe limonáda",
+       "p": 90,
+       "v": "0,4 l",
+       "d": "Bezinková, jahodová, malinová, mangová, maracujová nebo yuzu.",
+       "img": "lemonade"
+      },
+      {
+       "n": "Fresh juice",
+       "p": 115,
+       "v": "0,3 l",
+       "d": "Pomerančový, grepový nebo mix."
+      },
+      {
+       "n": "Smoothie",
+       "p": 140,
+       "v": "0,4 l",
+       "d": "Jahody, banán, kokosové mléko."
+      }
+     ]
+    },
+    {
+     "id": "nealko",
+     "name": "Nealko",
+     "items": [
+      {
+       "n": "Karafa vody s citronem",
+       "p": 40,
+       "v": "1 l"
+      },
+      {
+       "n": "Sklenice perlivé vody",
+       "p": 20,
+       "v": "0,4 l"
+      },
+      {
+       "n": "Něcojako Cola",
+       "p": 75,
+       "v": "0,33 l"
+      },
+      {
+       "n": "Něcojako Franta",
+       "p": 75,
+       "v": "0,33 l"
+      },
+      {
+       "n": "Kombucha",
+       "p": 80,
+       "v": "0,33 l"
+      },
+      {
+       "n": "Rozlévaný džus",
+       "p": 45,
+       "v": "0,3 l",
+       "d": "Multivitamin, pomeranč, jablko."
+      },
+      {
+       "n": "Matcha Seicha",
+       "p": 80,
+       "v": "0,33 l",
+       "d": "Grep, jahoda a meruňka, limetka, yuzu a zázvor."
+      },
+      {
+       "n": "Tonic Thomas Henry",
+       "p": 55,
+       "v": "0,2 l",
+       "d": "Tonic Water, Cherry Blossom, Pink Grapefruit."
+      },
+      {
+       "n": "Limonáda Fentimans",
+       "p": 60,
+       "v": "0,2 l",
+       "d": "Ginger Beer, Rose Lemonade."
+      },
+      {
+       "n": "Bernard",
+       "p": 45,
+       "v": "0,5 l",
+       "d": "Švestka, S čistou hlavou Free."
+      }
+     ]
+    },
+    {
+     "id": "alko",
+     "name": "Alkohol a víno",
+     "items": [
+      {
+       "n": "Prosecco",
+       "p": 55,
+       "v": "0,1 l"
+      },
+      {
+       "n": "Hugo",
+       "p": 140,
+       "v": "0,3 l",
+       "d": "Prosecco, bezový sirup, soda, limetka, máta."
+      },
+      {
+       "n": "Mimóza",
+       "p": 110,
+       "v": "0,2 l",
+       "d": "Prosecco, pomerančový džus."
+      },
+      {
+       "n": "Mango & Maracuja Spritz",
+       "p": 140,
+       "v": "0,3 l",
+       "d": "Prosecco, mango a maracuja sirup, soda."
+      },
+      {
+       "n": "Aperol Spritz",
+       "p": 140,
+       "v": "0,3 l",
+       "d": "Prosecco, Aperol, soda."
+      },
+      {
+       "n": "Gin & Tonic",
+       "p": 130,
+       "v": "0,3 l",
+       "d": "Bílý nebo růžový."
+      },
+      {
+       "n": "Bernard 12°",
+       "p": 45,
+       "v": "0,5 l",
+       "d": "Lahvové pivo."
+      },
+      {
+       "h": "Vína · Vinařství Škrobák, Čejkovice"
+      },
+      {
+       "n": "Ryzlink rýnský",
+       "p": 60,
+       "v": "0,1 l",
+       "d": "Bílé, polosuché."
+      },
+      {
+       "n": "Pálava",
+       "p": 60,
+       "v": "0,1 l",
+       "d": "Bílé, polosladké."
+      },
+      {
+       "n": "Dornfelder",
+       "p": 60,
+       "v": "0,1 l",
+       "d": "Červené, polosuché."
+      },
+      {
+       "h": "Na zahřátí"
+      },
+      {
+       "n": "Svařák",
+       "p": 85
+      },
+      {
+       "n": "Apple Pie",
+       "p": 95
+      },
+      {
+       "n": "Horká Maracuja",
+       "p": 90
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
