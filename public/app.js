@@ -234,11 +234,6 @@ const slideType = (a = true) => slide(typeBox, $('input:checked', typeBox).paren
 })();
 addEventListener('resize', () => { slideType(false); if (MENU) { slide(grpBox, $(`[data-g="${grp}"]`, grpBox), false); slide(catBox, $(`[data-c="${cat}"]`, catBox), false); } });
 
-/* ---------- cookies ---------- */
-const ck = $('#cookie'); ck.hidden = !!store.get('maybe-ck');
-$$('[data-ck]', ck).forEach(b => b.onclick = () => { store.set('maybe-ck', b.dataset.ck); ck.hidden = true; });
-$('#ckOpen').onclick = () => { ck.hidden = false; };
-
 /* ---------- patička: fotky za kurzorem ----------
    Převedeno do čistého JS z komponenty ImageTrail (React Bits, github.com/DavidHDev/react-bits). */
 (function trail() {

@@ -325,8 +325,6 @@ h1 mark::before{content:"";position:absolute;z-index:-1;left:-.14em;right:-.14em
 .lb-x{position:absolute;right:18px;top:16px;z-index:2}
 .lb-x:hover{transform:rotate(90deg)}
 
-.cookie{position:fixed;right:14px;bottom:14px;z-index:65;max-width:400px;display:grid;gap:12px;padding:18px;border-radius:22px;background:var(--paper);border:1px solid var(--line);box-shadow:0 24px 50px -24px rgba(31,30,26,.35);font-size:14px}
-.cookie div{display:flex;gap:10px;justify-content:flex-end;align-items:center}
 
 /* ---------- užší šířky ---------- */
 @media (max-width:1060px){
@@ -359,7 +357,6 @@ h1 mark::before{content:"";position:absolute;z-index:-1;left:-.14em;right:-.14em
   .seg.big button{padding:14px 22px}
   .hours td:last-child{display:none}
   .rs-e{flex-direction:column;align-items:stretch}.rs-e .btn{justify-content:space-between}
-  .cookie{left:10px;right:10px;bottom:10px}
   #rsType span{padding:12px 13px;font-size:14px}
 }
 @media (prefers-reduced-motion:reduce){
