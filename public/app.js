@@ -239,76 +239,37 @@ const ck = $('#cookie'); ck.hidden = !!store.get('maybe-ck');
 $$('[data-ck]', ck).forEach(b => b.onclick = () => { store.set('maybe-ck', b.dataset.ck); ck.hidden = true; });
 $('#ckOpen').onclick = () => { ck.hidden = false; };
 
-/* ---------- patička: Maybe nakreslené do matcha latte (WebGL2) ---------- */
-(function liquid() {
-  const box = $('#liquid'), cv = $('#gl'); if (!box || !cv) return;
-  const gl = cv.getContext('webgl2', { antialias: false, alpha: false, powerPreference: 'low-power' }); if (!gl) return;
-  const VS = `#version 300 es
-in vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
-  const FS = `#version 300 es
-precision highp float;
-uniform vec2 uRes;uniform float uT;uniform vec2 uM;uniform float uStir;uniform sampler2D uLogo;uniform float uLA;
-out vec4 o;
-float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
-float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
-float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*noise(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return s;}
-float logoAt(vec2 p){float h=.74;vec2 q=p/vec2(h*uLA,h)+.5;if(q.x<0.||q.x>1.||q.y<0.||q.y>1.)return 0.;return texture(uLogo,vec2(q.x,1.-q.y)).r;}
-void main(){
-  vec2 uv=gl_FragCoord.xy/uRes;float ca=uRes.x/uRes.y;
-  vec2 p=(uv-.5)*vec2(ca,1.);float t=uT*.055;
-  vec2 mp=(uM-.5)*vec2(ca,1.);vec2 dm=p-mp;float r2=dot(dm,dm);
-  float sw=uStir*exp(-r2*9.)*1.5;float cs=cos(sw),sn=sin(sw);vec2 ps=mp+mat2(cs,-sn,sn,cs)*dm;
-  vec2 w1=vec2(fbm(ps*1.5+vec2(0.,t)),fbm(ps*1.5+vec2(5.2,-t)));
-  vec2 w2=vec2(fbm(ps*2.1+4.*w1+vec2(1.7,9.2)+t*.7),fbm(ps*2.1+4.*w1+vec2(8.3,2.8)-t*.6));
-  float f=fbm(ps*1.7+3.4*w2);
-  vec2 lp=ps+(w2-.5)*.011;
-  float m=logoAt(lp);
-  float foam=smoothstep(.2,.62,m);
-  float h=f*.3+m*.95;
-  float k=uRes.y*.075;
-  vec3 n=normalize(vec3(-dFdx(h)*k,-dFdy(h)*k,1.));
-  vec3 c1=vec3(.52,.66,.44),c2=vec3(.678,.757,.627),c3=vec3(.955,.94,.885);
-  vec3 col=mix(c1,c2,smoothstep(.28,.56,f));
-  col=mix(col,c3,smoothstep(.56,.8,f)*.8);
-  col=mix(col,vec3(.985,.972,.93),foam);
-  vec3 L=normalize(vec3(-.45+(uM.x-.5)*.5,.6+(uM.y-.5)*.5,.72));
-  float diff=clamp(dot(n,L),0.,1.);
-  float spec=pow(max(dot(reflect(-L,n),vec3(0.,0.,1.)),0.),28.);
-  col*=.84+.26*diff;col+=spec*(.08+.16*foam);
-  col-=smoothstep(.02,.22,m)*(1.-foam)*.07;
-  float edge=smoothstep(0.,.09,uv.y)*smoothstep(0.,.09,1.-uv.y);
-  col=mix(c2,col,edge);
-  o=vec4(col,1.);
-}`;
-  const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(s)); return null; } return s; };
-  const vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS); if (!vs || !fs) return;
-  const pr = gl.createProgram(); gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
-  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
-  gl.useProgram(pr);
-  const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-  const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-  const U = n => gl.getUniformLocation(pr, n), uRes = U('uRes'), uT = U('uT'), uM = U('uM'), uStir = U('uStir'), uLA = U('uLA');
-  /* logo jako měkká výšková mapa */
-  const LW = 1024, LH = Math.round(LW * 133.23 / 215.81), lc = d.createElement('canvas'); lc.width = LW; lc.height = LH;
-  const cx = lc.getContext('2d'), path = new Path2D($('#logo path').getAttribute('d')), s = LW * .9 / 215.81;
-  cx.fillStyle = '#000'; cx.fillRect(0, 0, LW, LH);
-  cx.setTransform(s, 0, 0, s, LW * .05, LH * .05);
-  cx.fillStyle = '#fff'; cx.strokeStyle = '#fff'; cx.lineJoin = 'round';
-  cx.shadowColor = '#fff'; cx.shadowBlur = 9; cx.fill(path); cx.fill(path);
-  cx.shadowBlur = 3; cx.fill(path);
-  const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
-  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, lc);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-  gl.uniform1f(uLA, LW / LH);
-  box.classList.add('gl');
-  let W = 0, H = 0, vis = false, mx = .5, my = .5, tmx = .5, tmy = .5, stir = 0, t0 = performance.now(), on = false;
-  const size = () => { const r = box.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 1.5); W = Math.max(2, Math.round(r.width * dpr)); H = Math.max(2, Math.round(r.height * dpr)); cv.width = W; cv.height = H; gl.viewport(0, 0, W, H); gl.uniform2f(uRes, W, H); if (reduce) draw(performance.now()); };
-  const draw = now => { mx += (tmx - mx) * .06; my += (tmy - my) * .06; stir *= .965; gl.uniform1f(uT, (now - t0) / 1000); gl.uniform2f(uM, mx, my); gl.uniform1f(uStir, stir); gl.drawArrays(gl.TRIANGLES, 0, 3); };
-  const loop = now => { if (!on) return; draw(now); requestAnimationFrame(loop); };
-  box.addEventListener('pointermove', e => { const r = box.getBoundingClientRect(), nx = (e.clientX - r.left) / r.width, ny = 1 - (e.clientY - r.top) / r.height; stir = Math.min(1.6, stir + Math.hypot(nx - tmx, ny - tmy) * 5); tmx = nx; tmy = ny; }, { passive: true });
-  new IntersectionObserver(es => { vis = es[0].isIntersecting; const was = on; on = vis && !reduce; if (on && !was) requestAnimationFrame(loop); }, { rootMargin: '200px' }).observe(box);
-  addEventListener('resize', size); size(); if (!reduce) draw(performance.now());
+/* ---------- patička: fotky za kurzorem ----------
+   Převedeno do čistého JS z komponenty ImageTrail (React Bits, github.com/DavidHDev/react-bits). */
+(function trail() {
+  const box = $('#trail'); if (!box || !window.gsap || reduce) return;
+  const cfg = { threshold: 80, lifetime: .45, appearScale: .7, exitScale: .2, rotation: 9, sizeVariance: .25, tilt: 8, zoom: 1.25 };
+  const imgs = $$('[data-trail-image]', box).map(el => ({ el, inner: el.firstElementChild })), total = imgs.length;
+  const mouse = { x: 0, y: 0 }, last = { x: 0, y: 0 }, cache = { x: 0, y: 0 }, lerp = (a, b, n) => (1 - n) * a + n * b;
+  let started = false, raf = 0, index = -1, z = 1, active = 0;
+  const spawn = () => {
+    index = (index + 1) % total; const img = imgs[index], w = img.el.offsetWidth, h = img.el.offsetHeight;
+    const from = gsap.utils.random(-cfg.rotation, cfg.rotation), scale = 1 + gsap.utils.random(-.5, .6) * cfg.sizeVariance, r = box.getBoundingClientRect();
+    const tx = -((mouse.y - r.height / 2) / (r.height / 2)) * cfg.tilt, ty = ((mouse.x - r.width / 2) / (r.width / 2)) * cfg.tilt;
+    ++z; ++active; gsap.killTweensOf(img.el); gsap.killTweensOf(img.inner);
+    const tl = gsap.timeline({ onComplete: () => { active = Math.max(0, active - 1); if (!active) z = 1; } });
+    tl.fromTo(img.el, { opacity: 1, scale: cfg.appearScale * scale, zIndex: z, x: cache.x - w / 2, y: cache.y - h / 2, rotation: from, rotationX: tx * .5, rotationY: ty * .5 },
+      { duration: .4, ease: 'power1', scale, x: mouse.x - w / 2, y: mouse.y - h / 2, rotation: from * .4, rotationX: tx, rotationY: ty }, 0);
+    tl.fromTo(img.inner, { scale: cfg.zoom }, { duration: .5, ease: 'power1', scale: 1 }, 0);
+    tl.to(img.el, { duration: .4, ease: 'power3', opacity: 0, scale: cfg.exitScale * scale }, cfg.lifetime);
+  };
+  const loop = () => {
+    raf = 0; cache.x = lerp(cache.x, mouse.x, .1); cache.y = lerp(cache.y, mouse.y, .1);
+    if (Math.hypot(mouse.x - last.x, mouse.y - last.y) > cfg.threshold) { spawn(); last.x = mouse.x; last.y = mouse.y; }
+    if (Math.abs(cache.x - mouse.x) > .5 || Math.abs(cache.y - mouse.y) > .5) raf = requestAnimationFrame(loop);
+  };
+  const move = e => {
+    const r = box.getBoundingClientRect(), p = e.touches ? e.touches[0] : e; if (!p) return;
+    mouse.x = p.clientX - r.left; mouse.y = p.clientY - r.top;
+    if (!started) { started = true; cache.x = last.x = mouse.x; cache.y = last.y = mouse.y; }
+    if (!raf) raf = requestAnimationFrame(loop);
+  };
+  box.addEventListener('mousemove', move); box.addEventListener('touchmove', move, { passive: true });
 })();
 
 onScroll();
